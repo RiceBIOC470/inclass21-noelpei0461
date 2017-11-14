@@ -8,7 +8,7 @@
 % out off ( x(0) = 0 and y(0) = 0). Plot the value of x and y in time and 
 % explain your results. 
 
-%set k=k2=d=d2=1, because x(0)=0
+%set k=k2=d=d2=1. because x(0)=0
 %x=1-exp(-t)
 % x simulation:
 dt=0.01;
@@ -19,7 +19,9 @@ for ii=2:nstep
     soll(ii)=soll(ii-1)+rhs(soll(ii-1))*dt;
 end
 tt=linspace(interval(1),interval(2), nstep);
+figure(5)
 plot(tt,soll)
+hold on 
 % y simulation
 dt=0.01;
 interval=[0 10];
@@ -31,7 +33,12 @@ end
 tt=linspace(interval(1),interval(2), nstep);
 plot(tt,soll2)
 
-% when k=k2=d=d2=1, the simulation of both x and y are the same.
+% when k=k2=d=d2=1, the simulation of both x and y are the same. Then I
+% tried using different k2 and d2. One interesting result I found was that
+% the change of d2 does not change the shape of the integration. But when I
+% change the k2 into 2, the second integration become y(t)=0. I think that
+% means the integration of y depends on value of x, since x is involved in
+% the y derivative expression.
 
 % 2. Consider the following model: 
 % dx/dt = y
@@ -102,6 +109,6 @@ plot(tt,sollx)
 hold on;
 plot(tt,solly)
 
-% y is the derivative of x. If y=0, then x=0. So if the starting point of x
-% and y are (0,0), then xt=0, yt=0. Otherwise, x and y will vibrate
+% y is the derivative of x. If y=0, then x will neither increase or decrease. If both x and y are 0 at starting point then y will also not change since its derivative is 0.
+%So if the starting point of x and y are (0,0), then xt=0, yt=0. Otherwise, x and y will vibrate
 % peroidcally.
